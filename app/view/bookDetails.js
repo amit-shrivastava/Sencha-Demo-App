@@ -35,7 +35,6 @@ Ext.define("SenchaNote.view.bookDetails",{
     },
 
     onBackButtonClicked : function() {
-        console.log('clicked');
         this.fireEvent('backButtonClicked', this);
     }
 });
