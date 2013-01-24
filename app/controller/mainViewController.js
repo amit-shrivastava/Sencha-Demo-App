@@ -23,6 +23,7 @@ Ext.define('SenchaNote.controller.mainViewController',{
     onGetBookDetails : function(list, id) {
         var dataStore = Ext.getStore('bookDetailsStore');
         var dataLocalStore = Ext.getStore('localBookDetailsStore');
+        SenchaNote.app.currentBookId = id;
 
         if ((dataLocalStore.getCount()) == 0) {
             dataStore.on({
@@ -36,9 +37,9 @@ Ext.define('SenchaNote.controller.mainViewController',{
                 scope: this
             });
 		} else {
-            var bookId = dataLocalStore.getData().getAt(0).data.id;
-            if(bookId !== id) {
-                dataLocalStore.removeAll(true);
+            var hasBook = dataLocalStore.findExact('id', id);
+
+            if(hasBook == -1) {
                 dataStore.on({
                     load: 'onStoreLoad',
                     scope: this
@@ -62,9 +63,18 @@ Ext.define('SenchaNote.controller.mainViewController',{
         if(!status) {
             dataStore.each(function(item) {
                 dataLocalStore.add(item);
-            });   
+            });
         }
-        var bookDetailsView = Ext.create('SenchaNote.view.bookDetails', {store : dataLocalStore});
+
+        dataStore.removeAll(true);
+        var hasBook = dataLocalStore.findExact('id', SenchaNote.app.currentBookId);        
+        dataLocalStore.each(function(item, index) {
+            if(index == hasBook) {
+                dataStore.add(item);    
+            }
+        });
+
+        var bookDetailsView = Ext.create('SenchaNote.view.bookDetails');
         Ext.Viewport.setActiveItem(bookDetailsView);
     },
 
