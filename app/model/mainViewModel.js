@@ -4,6 +4,7 @@ Ext.define('SenchaNote.model.mainViewModel', {
         //fields: ['id', 'volumeInfo'],
         fields: [
            // {name: 'volumeInfo', type: 'string'},
+           {name: 'id', type: 'string'},
             {name: 'volumeInfo', convert: 
             function(value, record) {
                 //console.log(value)

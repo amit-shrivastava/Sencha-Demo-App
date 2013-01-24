@@ -91,7 +91,7 @@ Ext.define('SenchaNote.controller.mainViewController',{
     },
 
     onBackButtonClicked: function() {
-        var mainView = Ext.create('SenchaNote.view.mainView');
-        Ext.Viewport.setActiveItem(mainView);
+        //var mainView = Ext.create('SenchaNote.view.mainView');
+        Ext.Viewport.setActiveItem('mainView');
     },
 });

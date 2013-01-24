@@ -1,5 +1,5 @@
 Ext.define('SenchaNote.view.mainView',{
-    extend: 'Ext.List', 
+    extend: 'Ext.Container', 
     xtype: 'mainview',
     requires: [
         'Ext.dataview.List',
@@ -10,20 +10,21 @@ Ext.define('SenchaNote.view.mainView',{
 
     config: {
         layout: {
-            type: 'fit'
+            type: 'card'
         },
-        xtype: 'list',
-        itemId:"booksList",
-        //itemTpl: '<div>{volumeInfo.title}</div>',
-        itemTpl: '<div>{volumeInfo}</div>',
-        onItemDisclosure: true,
-        emptyText: 'test',
-        store: "mainViewStore",
         items: [{
             xtype: "toolbar",
             title: "Books",
             docked: "top",
-        }, {  
+        }, {
+            xtype: "list",
+            store: "mainViewStore",
+            itemId:"booksList",
+            loadingText: "Loading Books...",
+            emptyText: "<div>No books found.</div>",
+            onItemDisclosure: true,
+            itemTpl: '<div>{volumeInfo}</div>',
+        },{  
             xtype:'toolbar',
             docked:'bottom',
             items:[{
