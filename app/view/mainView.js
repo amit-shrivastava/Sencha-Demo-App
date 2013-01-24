@@ -29,6 +29,7 @@ Ext.define('SenchaNote.view.mainView',{
             fn: "onBooksListDisclose"
         }],
     },
+
     onBooksListDisclose: function (list, record, target, index, evt, options) {
         var id = record.data.id;
         this.fireEvent('getBookDetails', this, id);

@@ -33,6 +33,7 @@ Ext.define("SenchaNote.view.bookDetails",{
             fn: "onBackButtonClicked"
         }],
     },
+
     onBackButtonClicked : function() {
         console.log('clicked');
         this.fireEvent('backButtonClicked', this);
