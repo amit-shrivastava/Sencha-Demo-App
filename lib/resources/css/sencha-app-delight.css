@@ -1,0 +1,9 @@
+.sencha-ui-login-div{
+    width:50%;
+    height:150px;
+    border:1px solid #990000;
+    margin:5% auto;
+}
+.x-msgbox{
+    height:300px !important;
+}
