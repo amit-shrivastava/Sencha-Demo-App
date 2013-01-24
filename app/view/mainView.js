@@ -1,5 +1,6 @@
 Ext.define('SenchaNote.view.mainView',{
-    extend: 'Ext.Container',
+    //extend: 'Ext.Container',
+    extend: 'Ext.List', 
     xtype: 'mainview',
     requires: [
         'Ext.dataview.List',
@@ -8,21 +9,25 @@ Ext.define('SenchaNote.view.mainView',{
     
     config: {
         layout: {
-            type: 'card'
+            type: 'fit'
         },
+        itemTpl: '<div>{volumeInfo.title}</div>',
+        store: "mainViewStore",
         items: [{
             xtype: "toolbar",
             title: "Books",
             docked: "top",
-        }, {
-            xtype: "list",
-            store: "mainViewStore",
-            itemId:"booksList",
-            loadingText: "Loading Books...",
-            emptyText: "<div>No books found.</div>",
-            onItemDisclosure: true,
-            itemTpl: '<div>{volumeInfo.title}</div>',       
-        }],
+        }, {  
+            xtype:'toolbar',
+            docked:'bottom',
+            items:[{
+                xtype: 'searchfield',
+                itemId:'books_search',
+                id:'books_search',
+                placeHolder: 'Search Books'  
+            }]
+        }
+        ],
         listeners: [{
             delegate: "#booksList",
             event: "disclose",
