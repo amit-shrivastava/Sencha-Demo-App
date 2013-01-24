@@ -7,18 +7,14 @@ Ext.define('SenchaNote.controller.mainViewController',{
 
     config: {
         refs: {
-            // We're going to lookup our views by xtype.
             mainView: 'mainView',
             bookDetails: 'bookDetails',
-            //booksList: "#booksList"
         },
         control: {
             mainView: {
-                // The commands fired by the notes list container.
                 getBookDetails: "onGetBookDetails",
             },
             bookDetails: {
-                // The commands fired by the notes list container.
                 backButtonClicked: "onBackButtonClicked",
             },
         },

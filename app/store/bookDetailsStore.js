@@ -11,7 +11,6 @@ Ext.define("SenchaNote.store.bookDetailsStore",{
 			noCache: false,
             reader: {
                 type: 'json',
-                //rootProperty: 'items'
             }
         },
     },
