@@ -3,6 +3,7 @@ Ext.define('SenchaNote.controller.mainViewController',{
 
     requires: [
         'SenchaNote.store.bookDetailsStore',
+        'Ext.data.proxy.LocalStorage',
     ],
 
     config: {
@@ -13,12 +14,23 @@ Ext.define('SenchaNote.controller.mainViewController',{
         control: {
             mainView: {
                 getBookDetails: "onGetBookDetails",
+                searchInputReceived: "onSearchInputReceived",
             },
             bookDetails: {
                 backButtonClicked: "onBackButtonClicked",
             },
         },
     },
+
+	onSearchInputReceived : function(list, searchText) {
+		var mainViewStore = Ext.getStore('mainViewStore');
+		mainViewStore.load({
+			url: 'https://www.googleapis.com/books/v1/volumes?q=' + searchText,
+			callback: function(records, operation, success) {
+			},
+			scope: this
+		});
+	},
 
     onGetBookDetails : function(list, id) {
         var dataStore = Ext.getStore('bookDetailsStore');
@@ -79,7 +91,7 @@ Ext.define('SenchaNote.controller.mainViewController',{
     },
 
     onBackButtonClicked: function() {
-        var mainView = Ext.create('SenchaNote.view.mainView');
-        Ext.Viewport.setActiveItem(mainView);
+        //var mainView = Ext.create('SenchaNote.view.mainView');
+        Ext.Viewport.setActiveItem('mainView');
     },
 });
